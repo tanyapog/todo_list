@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const TodoApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class TodoApp extends StatelessWidget {
+  const TodoApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
+  // This widget is the root of the application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      title: 'Todo App',
+      theme: ThemeData(primarySwatch: Colors.blue,),
       home: const HomePage(),
       debugShowCheckedModeBanner: false,
     );
