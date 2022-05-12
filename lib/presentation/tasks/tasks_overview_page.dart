@@ -18,7 +18,6 @@ class TasksOverviewPage extends StatelessWidget {
             create: (context) => getIt<AuthBloc>(),
             child: BlocConsumer<AuthBloc, AuthState>(
               listener: (context, state) {
-                print("::: $state");
                 state.maybeMap(
                   unauthenticated: (_) => AutoRouter.of(context).replace(const SignInRoute()),
                   orElse: () => Container(),);
