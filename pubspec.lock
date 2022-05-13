@@ -190,6 +190,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.3"
+  disposebag:
+    dependency: transitive
+    description:
+      name: disposebag
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.5.0"
   fake_async:
     dependency: transitive
     description:
@@ -492,6 +499,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
+  rx_shared_preferences:
+    dependency: "direct main"
+    description:
+      name: rx_shared_preferences
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.3.0"
+  rx_storage:
+    dependency: transitive
+    description:
+      name: rx_storage
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.0"
   rxdart:
     dependency: "direct main"
     description:
@@ -499,8 +520,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.27.3"
+  rxdart_ext:
+    dependency: transitive
+    description:
+      name: rxdart_ext
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.3"
   shared_preferences:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: shared_preferences
       url: "https://pub.dartlang.org"

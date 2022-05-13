@@ -19,7 +19,7 @@ dependencies:
   injectable: ^1.5.3
   json_annotation: ^4.5.0
   nanoid: ^1.0.0
-  shared_preferences: ^2.0.15
+  rx_shared_preferences: ^2.3.0
   rxdart: ^0.27.3
 
 dev_dependencies:

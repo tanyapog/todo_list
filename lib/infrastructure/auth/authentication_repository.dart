@@ -1,19 +1,19 @@
 import 'dart:convert';
 
 import 'package:injectable/injectable.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 import 'package:todo_list/domain/users/authentication_exception.dart';
 import 'package:todo_list/domain/users/user.dart';
 
 @LazySingleton()
 class AuthenticationRepository {
-  final SharedPreferences _prefs;
+  final RxSharedPreferences _prefs;
   static const userKey = "user";
 
   AuthenticationRepository(this._prefs);
 
   Future<User?> getCurrentUser() async {
-    String? userData = _prefs.getString(userKey);
+    String? userData = await _prefs.getString(userKey);
     return (userData != null)
       ? User.fromJson(jsonDecode(userData))
       : null;
