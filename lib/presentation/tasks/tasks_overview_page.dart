@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_list/application/tasks/task_watcher/task_watcher_bloc.dart';
 import 'package:todo_list/injection.dart';
+import 'package:todo_list/presentation/routes/router.gr.dart';
 import 'package:todo_list/presentation/tasks/widgets/sign_out_button.dart';
 
 class TasksOverviewPage extends StatelessWidget {
@@ -19,6 +20,10 @@ class TasksOverviewPage extends StatelessWidget {
         create: (context) => getIt<TaskWatcherBloc>()
           ..add(const TaskWatcherEvent.watchAll()),
         child: const _TasksOverview(),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => AutoRouter.of(context).push(TaskFormRoute(task: null)),
+        child: const Icon(Icons.add),
       ),
     );
   }

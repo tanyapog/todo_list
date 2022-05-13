@@ -8,11 +8,12 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:rx_shared_preferences/rx_shared_preferences.dart' as _i3;
 
-import 'application/auth/auth_bloc.dart' as _i8;
+import 'application/auth/auth_bloc.dart' as _i9;
 import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i7;
+import 'application/tasks/task_form/task_form_cubit.dart' as _i8;
 import 'application/tasks/task_watcher/task_watcher_bloc.dart' as _i5;
 import 'infrastructure/auth/authentication_repository.dart' as _i6;
-import 'infrastructure/shared_preferences_injectable_module.dart' as _i9;
+import 'infrastructure/shared_preferences_injectable_module.dart' as _i10;
 import 'infrastructure/tasks/task_repository.dart'
     as _i4; // ignore_for_file: unnecessary_lambdas
 
@@ -33,9 +34,11 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       () => _i6.AuthenticationRepository(get<_i3.RxSharedPreferences>()));
   gh.factory<_i7.SignInFormBloc>(
       () => _i7.SignInFormBloc(get<_i6.AuthenticationRepository>()));
-  gh.factory<_i8.AuthBloc>(
-      () => _i8.AuthBloc(get<_i6.AuthenticationRepository>()));
+  gh.factory<_i8.TaskFormCubit>(
+      () => _i8.TaskFormCubit(get<_i4.TaskRepository>()));
+  gh.factory<_i9.AuthBloc>(
+      () => _i9.AuthBloc(get<_i6.AuthenticationRepository>()));
   return get;
 }
 
-class _$RegisterModule extends _i9.RegisterModule {}
+class _$RegisterModule extends _i10.RegisterModule {}
