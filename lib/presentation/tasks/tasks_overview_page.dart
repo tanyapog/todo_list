@@ -37,16 +37,22 @@ class _TasksOverview extends StatelessWidget {
     final state = context.watch<TaskWatcherBloc>().state;
     return state.map(
       loading: (_) => const Center(child: CircularProgressIndicator()),
-      success: (state) => ListView.builder(
-        itemCount: state.tasks.length,
-        itemBuilder: (context, i) {
-          final task = state.tasks[i];
-          return ListTile(
-            title: Text(task.name),
-            subtitle: Text(task.body, overflow: TextOverflow.ellipsis),
-            isThreeLine: true,
-          );
-        }
+      success: (state) => Padding(
+        padding: const EdgeInsets.all(3.0),
+        child: ListView.builder(
+          itemCount: state.tasks.length,
+          itemBuilder: (context, i) {
+            final task = state.tasks[i];
+            return Card(
+              elevation: 5,
+              child: ListTile(
+                title: Text(task.name),
+                subtitle: Text(task.body, overflow: TextOverflow.ellipsis),
+                isThreeLine: (task.body.length > 50),
+              ),
+            );
+          }
+        ),
       ),
       failure: (state) => Center(child: Text(state.message)),
     );
