@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_list/application/app_bloc_observer.dart';
 import 'package:todo_list/application/auth/auth_bloc.dart';
 import 'package:todo_list/injection.dart';
 import 'package:todo_list/presentation/routes/router.gr.dart' as app_router;
@@ -7,7 +8,10 @@ import 'package:todo_list/presentation/routes/router.gr.dart' as app_router;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureInjection();
-  runApp(TodoApp());
+  BlocOverrides.runZoned(
+    () => runApp(TodoApp()),
+    blocObserver: AppBlocObserver(),
+  );
 }
 
 class TodoApp extends StatelessWidget {
