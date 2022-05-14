@@ -23,13 +23,21 @@ class TaskRepository {
   }
 
   Future<void> update(Task task) async {
-    final currentTasksJson = await _prefs.getStringList(tasksKey);
-
-    List<Task> tasks = (currentTasksJson ?? []).map((taskData) =>
-      Task.fromJson(jsonDecode(taskData))).toList();
+    var tasks = _convertToTasks(await _prefs.getStringList(tasksKey));
     tasks[tasks.indexWhere((element) => element.id == task.id)] = task;
-
-    List<String> updatedTasks = tasks.map((task) => jsonEncode(task.toJson())).toList();
-    await _prefs.setStringList(tasksKey, updatedTasks);
+    await _prefs.setStringList(tasksKey, _convertToListOfJson(tasks));
+  }
+  
+  Future<void> delete(Task task) async {
+    var tasks = _convertToTasks(await _prefs.getStringList(tasksKey));
+    tasks.remove(task);
+    await _prefs.setStringList(tasksKey, _convertToListOfJson(tasks));
   }
 }
+
+List<Task> _convertToTasks(List<String>? listJson) =>
+  (listJson ?? []).map((taskData) =>
+    Task.fromJson(jsonDecode(taskData))).toList();
+
+List<String> _convertToListOfJson(List<Task> tasks) =>
+    tasks.map((task) => jsonEncode(task.toJson())).toList();

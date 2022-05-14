@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_list/application/tasks/task_watcher/task_watcher_bloc.dart';
 import 'package:todo_list/injection.dart';
+import 'package:todo_list/presentation/pages/tasks/widgets/InheritedTask.dart';
 import 'package:todo_list/presentation/pages/tasks/widgets/sign_out_button.dart';
 import 'package:todo_list/presentation/pages/tasks/widgets/task_card.dart';
 import 'package:todo_list/presentation/routes/router.gr.dart';
@@ -43,7 +44,10 @@ class _TasksOverview extends StatelessWidget {
         child: ListView.builder(
           itemCount: state.tasks.length,
           itemBuilder: (context, i) {
-            return TaskCard(task: state.tasks[i]);
+            return InheritedTask(
+              task: state.tasks[i],
+              child: const TaskCard(),
+            );
           },
         ),
       ),
