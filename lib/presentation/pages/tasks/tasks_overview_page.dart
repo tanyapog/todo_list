@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_list/application/tasks/task_watcher/task_watcher_bloc.dart';
 import 'package:todo_list/injection.dart';
 import 'package:todo_list/presentation/pages/tasks/widgets/sign_out_button.dart';
+import 'package:todo_list/presentation/pages/tasks/widgets/task_card.dart';
 import 'package:todo_list/presentation/routes/router.gr.dart';
 
 class TasksOverviewPage extends StatelessWidget {
@@ -42,18 +43,7 @@ class _TasksOverview extends StatelessWidget {
         child: ListView.builder(
           itemCount: state.tasks.length,
           itemBuilder: (context, i) {
-            final task = state.tasks[i];
-            return InkWell(
-              onTap: () => AutoRouter.of(context).push(TaskFormRoute(task: task)),
-              child: Card(
-                elevation: 5,
-                child: ListTile(
-                  title: Text(task.name),
-                  subtitle: Text(task.body, overflow: TextOverflow.ellipsis),
-                  isThreeLine: (task.body.length > 50),
-                ),
-              ),
-            );
+            return TaskCard(task: state.tasks[i]);
           },
         ),
       ),
