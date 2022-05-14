@@ -35,7 +35,7 @@ class _TaskFormBody extends HookWidget {
     return BlocProvider(
       create: (context) => (task == null)
         ? getIt<TaskFormCubit>()
-        : getIt<TaskFormCubit>()..init(task!),
+        : (getIt<TaskFormCubit>()..init(task!)),
       child: BlocBuilder<TaskFormCubit, TaskFormState>(
         buildWhen: (previous, current) =>
           previous.isSaving != current.isSaving &&
