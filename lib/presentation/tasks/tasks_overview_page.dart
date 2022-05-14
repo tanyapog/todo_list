@@ -43,15 +43,18 @@ class _TasksOverview extends StatelessWidget {
           itemCount: state.tasks.length,
           itemBuilder: (context, i) {
             final task = state.tasks[i];
-            return Card(
-              elevation: 5,
-              child: ListTile(
-                title: Text(task.name),
-                subtitle: Text(task.body, overflow: TextOverflow.ellipsis),
-                isThreeLine: (task.body.length > 50),
+            return InkWell(
+              onTap: () => AutoRouter.of(context).push(TaskFormRoute(task: task)),
+              child: Card(
+                elevation: 5,
+                child: ListTile(
+                  title: Text(task.name),
+                  subtitle: Text(task.body, overflow: TextOverflow.ellipsis),
+                  isThreeLine: (task.body.length > 50),
+                ),
               ),
             );
-          }
+          },
         ),
       ),
       failure: (state) => Center(child: Text(state.message)),

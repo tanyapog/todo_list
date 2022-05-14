@@ -33,13 +33,18 @@ class _TaskFormBody extends HookWidget {
     final bodyController = useTextEditingController();
 
     return BlocProvider(
-      create: (context) => getIt<TaskFormCubit>(),
-      child: BlocConsumer<TaskFormCubit, TaskFormState>(
-        listener: (context, state) {
-          // nameController.text = state.task.name;
-          // bodyController.text = state.task.body;
-        },
+      create: (context) => (task == null)
+        ? getIt<TaskFormCubit>()
+        : getIt<TaskFormCubit>()..init(task!),
+      child: BlocBuilder<TaskFormCubit, TaskFormState>(
+        buildWhen: (previous, current) =>
+          previous.isSaving != current.isSaving &&
+          previous.isEditing != current.isEditing,
         builder: (context, state) {
+          if (state.isEditing) {
+            nameController.text = state.task.name;
+            bodyController.text = state.task.body;
+          }
           return Form(
             key: _taskFormKey,
             child: Padding(

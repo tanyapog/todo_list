@@ -13,10 +13,17 @@ class TaskFormCubit extends Cubit<TaskFormState> {
 
   TaskFormCubit(this._repository) : super(TaskFormState.initial());
 
+  Future<void> init(Task task) async =>
+    emit(state.copyWith(task: task, isEditing: true));
+
   Future<void> saveTask(Task task) async {
+    emit(state.copyWith(isSaving: true));
     try {
-      emit(state.copyWith(isSaving: true));
-      await _repository.create(task);
+      if (state.isEditing) {
+        await _repository.update(task);
+      } else {
+        await _repository.create(task);
+      }
       emit(state.copyWith(
         task: task,
         isSaving: false,
