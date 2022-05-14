@@ -4,17 +4,17 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:todo_list/application/tasks/task_form/task_form_cubit.dart';
 import 'package:todo_list/domain/tasks/task.dart';
 import 'package:todo_list/injection.dart';
+import 'package:todo_list/presentation/pages/tasks/widgets/dropdown_statuses.dart';
 
 class TaskFormPage extends StatelessWidget {
   final Task? task;
-  const TaskFormPage({Key? key, required this.task}) : super(key: key);
+  const TaskFormPage({Key? key, this.task}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text((task == null) ? 'Create new task' : 'Edit the task'),
-      ),
+        title: Text((task == null) ? 'Create new task' : 'Edit the task'),),
       body: _TaskFormBody(task: task,)
     );
   }
@@ -25,7 +25,7 @@ class _TaskFormBody extends HookWidget {
   static final _taskFormKey = GlobalKey<FormState>();
   static final _taskFormData = <String, dynamic>{};
 
-  const _TaskFormBody({Key? key, required this.task}) : super(key: key);
+  const _TaskFormBody({Key? key, this.task}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

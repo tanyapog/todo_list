@@ -38,7 +38,8 @@ class Router extends _i5.RootStackRouter {
           routeData: routeData, child: const _i3.TasksOverviewPage());
     },
     TaskFormRoute.name: (routeData) {
-      final args = routeData.argsAs<TaskFormRouteArgs>();
+      final args = routeData.argsAs<TaskFormRouteArgs>(
+          orElse: () => const TaskFormRouteArgs());
       return _i5.MaterialPageX<dynamic>(
           routeData: routeData,
           child: _i4.TaskFormPage(key: args.key, task: args.task));
@@ -82,7 +83,7 @@ class TasksOverviewRoute extends _i5.PageRouteInfo<void> {
 /// generated route for
 /// [_i4.TaskFormPage]
 class TaskFormRoute extends _i5.PageRouteInfo<TaskFormRouteArgs> {
-  TaskFormRoute({_i6.Key? key, required _i7.Task? task})
+  TaskFormRoute({_i6.Key? key, _i7.Task? task})
       : super(TaskFormRoute.name,
             path: '/task-form-page',
             args: TaskFormRouteArgs(key: key, task: task));
@@ -91,7 +92,7 @@ class TaskFormRoute extends _i5.PageRouteInfo<TaskFormRouteArgs> {
 }
 
 class TaskFormRouteArgs {
-  const TaskFormRouteArgs({this.key, required this.task});
+  const TaskFormRouteArgs({this.key, this.task});
 
   final _i6.Key? key;
 

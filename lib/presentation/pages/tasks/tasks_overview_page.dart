@@ -24,7 +24,7 @@ class TasksOverviewPage extends StatelessWidget {
         child: const _TasksOverview(),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => AutoRouter.of(context).push(TaskFormRoute(task: null)),
+        onPressed: () => AutoRouter.of(context).push(TaskFormRoute()),
         child: const Icon(Icons.add),
       ),
     );
