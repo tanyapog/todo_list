@@ -17,11 +17,26 @@ class TaskCard extends StatelessWidget {
         endActionPane: _TaskActionPane(),
         child: Card(
           elevation: 5,
-          child: ListTile(
-            title: Text(task.name),
-            subtitle: Text(task.body, overflow: TextOverflow.ellipsis),
-            isThreeLine: (task.body.length > 50),
-          ),
+          child: Container(
+            alignment: Alignment.centerLeft,
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(task.name, style: const TextStyle(fontSize: 16,
+                  fontWeight: FontWeight.bold, color: Colors.black87),),
+                const SizedBox(height: 3,),
+                Text(task.body, style: const TextStyle(color: Colors.black54),),
+                const SizedBox(height: 3,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [Text(task.status.name,
+                    style: const TextStyle(color: Colors.orange),)],
+                )
+              ],
+            ),
+          )
         ),
       ),
     );
