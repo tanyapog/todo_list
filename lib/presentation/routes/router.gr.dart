@@ -16,8 +16,8 @@ import 'package:flutter/material.dart' as _i6;
 import '../../domain/tasks/task.dart' as _i7;
 import '../pages/sign_in/sign_in_page.dart' as _i2;
 import '../pages/splash/splash_page.dart' as _i1;
-import '../tasks/task_form_page.dart' as _i4;
-import '../tasks/tasks_overview_page.dart' as _i3;
+import '../pages/tasks/task_form_page.dart' as _i4;
+import '../pages/tasks/tasks_overview_page.dart' as _i3;
 
 class Router extends _i5.RootStackRouter {
   Router([_i6.GlobalKey<_i6.NavigatorState>? navigatorKey])
