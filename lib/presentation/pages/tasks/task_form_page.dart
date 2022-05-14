@@ -50,6 +50,7 @@ class _TaskFormBody extends HookWidget {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextFormField( // name field
                     controller: nameController,
@@ -58,6 +59,7 @@ class _TaskFormBody extends HookWidget {
                         ? "Cannot be empty"
                         : null,
                     maxLength: 70,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                     decoration: const InputDecoration(
                       hintText: 'task name',
                       counterText: '',
@@ -76,14 +78,18 @@ class _TaskFormBody extends HookWidget {
                     ),
                   ),
                   const SizedBox(height: 10,),
+                  DropdownStatuses(
+                    current: state.task.status,
+                    onChange: (newStatus) => _taskFormData['status'] = newStatus,
+                  ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       TextButton(
                         onPressed: () => Navigator.of(context).pop(),
                         style: TextButton.styleFrom(backgroundColor: Colors.blueGrey.shade50,),
                         child: const Text("CANCEL"),),
-                      const SizedBox(width: 10),
+                      const SizedBox(width: 20),
                       TextButton(
                         onPressed: () async {
                           if (_taskFormKey.currentState!.validate()) {
@@ -92,6 +98,7 @@ class _TaskFormBody extends HookWidget {
                               id: state.task.id, // здесь автосгенерированный id
                               name: _taskFormData['name'],
                               body: _taskFormData['body'],
+                              status: _taskFormData['status'],
                             ));
                             Navigator.of(context).pop();
                           }
