@@ -60,9 +60,9 @@ class _TaskFormBody extends HookWidget {
                         : null,
                     maxLength: 70,
                     style: const TextStyle(fontWeight: FontWeight.bold),
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       hintText: 'task name',
-                      counterText: '',
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(3),)
                     ),
                   ),
                   const SizedBox(height: 10,),
@@ -72,9 +72,9 @@ class _TaskFormBody extends HookWidget {
                     maxLength: 1000,
                     maxLines: 5,
                     minLines: 3,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       hintText: 'type something here...',
-                      counterText: '',
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(3),)
                     ),
                   ),
                   const SizedBox(height: 10,),
