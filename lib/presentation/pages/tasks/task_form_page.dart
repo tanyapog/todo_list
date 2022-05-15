@@ -23,12 +23,12 @@ class TaskFormPage extends StatelessWidget {
 class _TaskFormBody extends HookWidget {
   final Task? task;
   static final _taskFormKey = GlobalKey<FormState>();
-  static final _taskFormData = <String, dynamic>{};
 
   const _TaskFormBody({Key? key, this.task}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final _taskFormData = <String, dynamic>{};
     final nameController = useTextEditingController();
     final bodyController = useTextEditingController();
 
@@ -98,7 +98,7 @@ class _TaskFormBody extends HookWidget {
                               id: state.task.id, // здесь автосгенерированный id
                               name: _taskFormData['name'],
                               body: _taskFormData['body'],
-                              status: _taskFormData['status'],
+                              status: _taskFormData['status'] ?? state.task.status,
                             ));
                             Navigator.of(context).pop();
                           }
