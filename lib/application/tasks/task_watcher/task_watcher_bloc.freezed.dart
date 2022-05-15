@@ -16,37 +16,42 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TaskWatcherEvent {
+  TaskStatusFilter get filter => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchAll,
+    required TResult Function(TaskStatusFilter filter) watch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? watchAll,
+    TResult Function(TaskStatusFilter filter)? watch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchAll,
+    TResult Function(TaskStatusFilter filter)? watch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WatchAll value) watchAll,
+    required TResult Function(Watch value) watch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(WatchAll value)? watchAll,
+    TResult Function(Watch value)? watch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchAll value)? watchAll,
+    TResult Function(Watch value)? watch,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $TaskWatcherEventCopyWith<TaskWatcherEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -55,6 +60,7 @@ abstract class $TaskWatcherEventCopyWith<$Res> {
   factory $TaskWatcherEventCopyWith(
           TaskWatcherEvent value, $Res Function(TaskWatcherEvent) then) =
       _$TaskWatcherEventCopyWithImpl<$Res>;
+  $Res call({TaskStatusFilter filter});
 }
 
 /// @nodoc
@@ -65,69 +71,105 @@ class _$TaskWatcherEventCopyWithImpl<$Res>
   final TaskWatcherEvent _value;
   // ignore: unused_field
   final $Res Function(TaskWatcherEvent) _then;
-}
-
-/// @nodoc
-abstract class _$$WatchAllCopyWith<$Res> {
-  factory _$$WatchAllCopyWith(
-          _$WatchAll value, $Res Function(_$WatchAll) then) =
-      __$$WatchAllCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$WatchAllCopyWithImpl<$Res>
-    extends _$TaskWatcherEventCopyWithImpl<$Res>
-    implements _$$WatchAllCopyWith<$Res> {
-  __$$WatchAllCopyWithImpl(_$WatchAll _value, $Res Function(_$WatchAll) _then)
-      : super(_value, (v) => _then(v as _$WatchAll));
 
   @override
-  _$WatchAll get _value => super._value as _$WatchAll;
+  $Res call({
+    Object? filter = freezed,
+  }) {
+    return _then(_value.copyWith(
+      filter: filter == freezed
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as TaskStatusFilter,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$WatchCopyWith<$Res>
+    implements $TaskWatcherEventCopyWith<$Res> {
+  factory _$$WatchCopyWith(_$Watch value, $Res Function(_$Watch) then) =
+      __$$WatchCopyWithImpl<$Res>;
+  @override
+  $Res call({TaskStatusFilter filter});
+}
+
+/// @nodoc
+class __$$WatchCopyWithImpl<$Res> extends _$TaskWatcherEventCopyWithImpl<$Res>
+    implements _$$WatchCopyWith<$Res> {
+  __$$WatchCopyWithImpl(_$Watch _value, $Res Function(_$Watch) _then)
+      : super(_value, (v) => _then(v as _$Watch));
+
+  @override
+  _$Watch get _value => super._value as _$Watch;
+
+  @override
+  $Res call({
+    Object? filter = freezed,
+  }) {
+    return _then(_$Watch(
+      filter == freezed
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as TaskStatusFilter,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$WatchAll implements WatchAll {
-  const _$WatchAll();
+class _$Watch implements Watch {
+  const _$Watch(this.filter);
+
+  @override
+  final TaskStatusFilter filter;
 
   @override
   String toString() {
-    return 'TaskWatcherEvent.watchAll()';
+    return 'TaskWatcherEvent.watch(filter: $filter)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$WatchAll);
+        (other.runtimeType == runtimeType &&
+            other is _$Watch &&
+            const DeepCollectionEquality().equals(other.filter, filter));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(filter));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$WatchCopyWith<_$Watch> get copyWith =>
+      __$$WatchCopyWithImpl<_$Watch>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() watchAll,
+    required TResult Function(TaskStatusFilter filter) watch,
   }) {
-    return watchAll();
+    return watch(filter);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? watchAll,
+    TResult Function(TaskStatusFilter filter)? watch,
   }) {
-    return watchAll?.call();
+    return watch?.call(filter);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchAll,
+    TResult Function(TaskStatusFilter filter)? watch,
     required TResult orElse(),
   }) {
-    if (watchAll != null) {
-      return watchAll();
+    if (watch != null) {
+      return watch(filter);
     }
     return orElse();
   }
@@ -135,34 +177,40 @@ class _$WatchAll implements WatchAll {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(WatchAll value) watchAll,
+    required TResult Function(Watch value) watch,
   }) {
-    return watchAll(this);
+    return watch(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(WatchAll value)? watchAll,
+    TResult Function(Watch value)? watch,
   }) {
-    return watchAll?.call(this);
+    return watch?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(WatchAll value)? watchAll,
+    TResult Function(Watch value)? watch,
     required TResult orElse(),
   }) {
-    if (watchAll != null) {
-      return watchAll(this);
+    if (watch != null) {
+      return watch(this);
     }
     return orElse();
   }
 }
 
-abstract class WatchAll implements TaskWatcherEvent {
-  const factory WatchAll() = _$WatchAll;
+abstract class Watch implements TaskWatcherEvent {
+  const factory Watch(final TaskStatusFilter filter) = _$Watch;
+
+  @override
+  TaskStatusFilter get filter => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$$WatchCopyWith<_$Watch> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -170,21 +218,22 @@ mixin _$TaskWatcherState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Task> tasks) success,
+    required TResult Function(List<Task> tasks, TaskStatusFilter filter)
+        success,
     required TResult Function(String message) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Task> tasks)? success,
+    TResult Function(List<Task> tasks, TaskStatusFilter filter)? success,
     TResult Function(String message)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Task> tasks)? success,
+    TResult Function(List<Task> tasks, TaskStatusFilter filter)? success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) =>
@@ -269,7 +318,8 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Task> tasks) success,
+    required TResult Function(List<Task> tasks, TaskStatusFilter filter)
+        success,
     required TResult Function(String message) failure,
   }) {
     return loading();
@@ -279,7 +329,7 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Task> tasks)? success,
+    TResult Function(List<Task> tasks, TaskStatusFilter filter)? success,
     TResult Function(String message)? failure,
   }) {
     return loading?.call();
@@ -289,7 +339,7 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Task> tasks)? success,
+    TResult Function(List<Task> tasks, TaskStatusFilter filter)? success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -342,7 +392,7 @@ abstract class Loading implements TaskWatcherState {
 abstract class _$$SuccessCopyWith<$Res> {
   factory _$$SuccessCopyWith(_$Success value, $Res Function(_$Success) then) =
       __$$SuccessCopyWithImpl<$Res>;
-  $Res call({List<Task> tasks});
+  $Res call({List<Task> tasks, TaskStatusFilter filter});
 }
 
 /// @nodoc
@@ -357,12 +407,17 @@ class __$$SuccessCopyWithImpl<$Res> extends _$TaskWatcherStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? tasks = freezed,
+    Object? filter = freezed,
   }) {
     return _then(_$Success(
       tasks == freezed
           ? _value._tasks
           : tasks // ignore: cast_nullable_to_non_nullable
               as List<Task>,
+      filter == freezed
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as TaskStatusFilter,
     ));
   }
 }
@@ -370,7 +425,7 @@ class __$$SuccessCopyWithImpl<$Res> extends _$TaskWatcherStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Success implements Success {
-  const _$Success(final List<Task> tasks) : _tasks = tasks;
+  const _$Success(final List<Task> tasks, this.filter) : _tasks = tasks;
 
   final List<Task> _tasks;
   @override
@@ -380,8 +435,11 @@ class _$Success implements Success {
   }
 
   @override
+  final TaskStatusFilter filter;
+
+  @override
   String toString() {
-    return 'TaskWatcherState.success(tasks: $tasks)';
+    return 'TaskWatcherState.success(tasks: $tasks, filter: $filter)';
   }
 
   @override
@@ -389,12 +447,15 @@ class _$Success implements Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$Success &&
-            const DeepCollectionEquality().equals(other._tasks, _tasks));
+            const DeepCollectionEquality().equals(other._tasks, _tasks) &&
+            const DeepCollectionEquality().equals(other.filter, filter));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_tasks));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_tasks),
+      const DeepCollectionEquality().hash(filter));
 
   @JsonKey(ignore: true)
   @override
@@ -405,32 +466,33 @@ class _$Success implements Success {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Task> tasks) success,
+    required TResult Function(List<Task> tasks, TaskStatusFilter filter)
+        success,
     required TResult Function(String message) failure,
   }) {
-    return success(tasks);
+    return success(tasks, filter);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Task> tasks)? success,
+    TResult Function(List<Task> tasks, TaskStatusFilter filter)? success,
     TResult Function(String message)? failure,
   }) {
-    return success?.call(tasks);
+    return success?.call(tasks, filter);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Task> tasks)? success,
+    TResult Function(List<Task> tasks, TaskStatusFilter filter)? success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(tasks);
+      return success(tasks, filter);
     }
     return orElse();
   }
@@ -471,9 +533,11 @@ class _$Success implements Success {
 }
 
 abstract class Success implements TaskWatcherState {
-  const factory Success(final List<Task> tasks) = _$Success;
+  const factory Success(final List<Task> tasks, final TaskStatusFilter filter) =
+      _$Success;
 
   List<Task> get tasks => throw _privateConstructorUsedError;
+  TaskStatusFilter get filter => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$$SuccessCopyWith<_$Success> get copyWith =>
       throw _privateConstructorUsedError;
@@ -542,7 +606,8 @@ class _$Failure implements Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Task> tasks) success,
+    required TResult Function(List<Task> tasks, TaskStatusFilter filter)
+        success,
     required TResult Function(String message) failure,
   }) {
     return failure(message);
@@ -552,7 +617,7 @@ class _$Failure implements Failure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Task> tasks)? success,
+    TResult Function(List<Task> tasks, TaskStatusFilter filter)? success,
     TResult Function(String message)? failure,
   }) {
     return failure?.call(message);
@@ -562,7 +627,7 @@ class _$Failure implements Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Task> tasks)? success,
+    TResult Function(List<Task> tasks, TaskStatusFilter filter)? success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {

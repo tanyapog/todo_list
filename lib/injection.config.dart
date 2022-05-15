@@ -29,8 +29,7 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       preResolve: true);
   gh.lazySingleton<_i4.TaskRepository>(
       () => _i4.TaskRepository(get<_i3.RxSharedPreferences>()));
-  gh.factory<_i5.TaskWatcherBloc>(
-      () => _i5.TaskWatcherBloc(get<_i4.TaskRepository>()));
+  gh.factory<_i5.TaskWatcherBloc>(() => _i5.TaskWatcherBloc());
   gh.lazySingleton<_i6.AuthenticationRepository>(
       () => _i6.AuthenticationRepository(get<_i3.RxSharedPreferences>()));
   gh.factory<_i7.SignInFormBloc>(
