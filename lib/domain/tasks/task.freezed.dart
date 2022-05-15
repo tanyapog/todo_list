@@ -20,11 +20,11 @@ Task _$TaskFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Task {
-  @JsonKey()
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get body => throw _privateConstructorUsedError;
   Status get status => throw _privateConstructorUsedError;
+  User? get assignedUser => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,10 @@ mixin _$Task {
 abstract class $TaskCopyWith<$Res> {
   factory $TaskCopyWith(Task value, $Res Function(Task) then) =
       _$TaskCopyWithImpl<$Res>;
-  $Res call({@JsonKey() String id, String name, String body, Status status});
+  $Res call(
+      {String id, String name, String body, Status status, User? assignedUser});
+
+  $UserCopyWith<$Res>? get assignedUser;
 }
 
 /// @nodoc
@@ -52,6 +55,7 @@ class _$TaskCopyWithImpl<$Res> implements $TaskCopyWith<$Res> {
     Object? name = freezed,
     Object? body = freezed,
     Object? status = freezed,
+    Object? assignedUser = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -70,7 +74,22 @@ class _$TaskCopyWithImpl<$Res> implements $TaskCopyWith<$Res> {
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
+      assignedUser: assignedUser == freezed
+          ? _value.assignedUser
+          : assignedUser // ignore: cast_nullable_to_non_nullable
+              as User?,
     ));
+  }
+
+  @override
+  $UserCopyWith<$Res>? get assignedUser {
+    if (_value.assignedUser == null) {
+      return null;
+    }
+
+    return $UserCopyWith<$Res>(_value.assignedUser!, (value) {
+      return _then(_value.copyWith(assignedUser: value));
+    });
   }
 }
 
@@ -79,7 +98,11 @@ abstract class _$$_TaskCopyWith<$Res> implements $TaskCopyWith<$Res> {
   factory _$$_TaskCopyWith(_$_Task value, $Res Function(_$_Task) then) =
       __$$_TaskCopyWithImpl<$Res>;
   @override
-  $Res call({@JsonKey() String id, String name, String body, Status status});
+  $Res call(
+      {String id, String name, String body, Status status, User? assignedUser});
+
+  @override
+  $UserCopyWith<$Res>? get assignedUser;
 }
 
 /// @nodoc
@@ -97,6 +120,7 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
     Object? name = freezed,
     Object? body = freezed,
     Object? status = freezed,
+    Object? assignedUser = freezed,
   }) {
     return _then(_$_Task(
       id: id == freezed
@@ -115,6 +139,10 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
+      assignedUser: assignedUser == freezed
+          ? _value.assignedUser
+          : assignedUser // ignore: cast_nullable_to_non_nullable
+              as User?,
     ));
   }
 }
@@ -123,15 +151,15 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Task implements _Task {
   const _$_Task(
-      {@JsonKey() required this.id,
+      {required this.id,
       required this.name,
       required this.body,
-      this.status = Status.waiting});
+      this.status = Status.waiting,
+      this.assignedUser});
 
   factory _$_Task.fromJson(Map<String, dynamic> json) => _$$_TaskFromJson(json);
 
   @override
-  @JsonKey()
   final String id;
   @override
   final String name;
@@ -140,10 +168,12 @@ class _$_Task implements _Task {
   @override
   @JsonKey()
   final Status status;
+  @override
+  final User? assignedUser;
 
   @override
   String toString() {
-    return 'Task(id: $id, name: $name, body: $body, status: $status)';
+    return 'Task(id: $id, name: $name, body: $body, status: $status, assignedUser: $assignedUser)';
   }
 
   @override
@@ -154,7 +184,9 @@ class _$_Task implements _Task {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.body, body) &&
-            const DeepCollectionEquality().equals(other.status, status));
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality()
+                .equals(other.assignedUser, assignedUser));
   }
 
   @JsonKey(ignore: true)
@@ -164,7 +196,8 @@ class _$_Task implements _Task {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(body),
-      const DeepCollectionEquality().hash(status));
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(assignedUser));
 
   @JsonKey(ignore: true)
   @override
@@ -179,15 +212,15 @@ class _$_Task implements _Task {
 
 abstract class _Task implements Task {
   const factory _Task(
-      {@JsonKey() required final String id,
+      {required final String id,
       required final String name,
       required final String body,
-      final Status status}) = _$_Task;
+      final Status status,
+      final User? assignedUser}) = _$_Task;
 
   factory _Task.fromJson(Map<String, dynamic> json) = _$_Task.fromJson;
 
   @override
-  @JsonKey()
   String get id => throw _privateConstructorUsedError;
   @override
   String get name => throw _privateConstructorUsedError;
@@ -195,6 +228,8 @@ abstract class _Task implements Task {
   String get body => throw _privateConstructorUsedError;
   @override
   Status get status => throw _privateConstructorUsedError;
+  @override
+  User? get assignedUser => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_TaskCopyWith<_$_Task> get copyWith => throw _privateConstructorUsedError;

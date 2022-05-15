@@ -5,6 +5,7 @@ import 'package:todo_list/application/tasks/task_form/task_form_cubit.dart';
 import 'package:todo_list/domain/tasks/task.dart';
 import 'package:todo_list/injection.dart';
 import 'package:todo_list/presentation/pages/tasks/widgets/dropdown_statuses.dart';
+import 'package:todo_list/presentation/pages/tasks/widgets/dropdown_users.dart';
 
 class TaskFormPage extends StatelessWidget {
   final Task? task;
@@ -78,10 +79,21 @@ class _TaskFormBody extends HookWidget {
                     ),
                   ),
                   const SizedBox(height: 10,),
-                  DropdownStatuses(
-                    current: state.task.status,
-                    onChange: (newStatus) => _taskFormData['status'] = newStatus,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      DropdownUsers(
+                        assignedUser: state.task.assignedUser,
+                        onChange: (newUser) => _taskFormData['assignedUser'] = newUser,
+                      ),
+                      const SizedBox(width: 10,),
+                      DropdownStatuses(
+                        current: state.task.status,
+                        onChange: (newStatus) => _taskFormData['status'] = newStatus,
+                      ),
+                    ],
                   ),
+                  const SizedBox(height: 10,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -99,6 +111,7 @@ class _TaskFormBody extends HookWidget {
                               name: _taskFormData['name'],
                               body: _taskFormData['body'],
                               status: _taskFormData['status'] ?? state.task.status,
+                              assignedUser: _taskFormData['assignedUser'],
                             ));
                             Navigator.of(context).pop();
                           }

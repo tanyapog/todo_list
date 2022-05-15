@@ -12,6 +12,9 @@ _$_Task _$$_TaskFromJson(Map<String, dynamic> json) => _$_Task(
       body: json['body'] as String,
       status: $enumDecodeNullable(_$StatusEnumMap, json['status']) ??
           Status.waiting,
+      assignedUser: json['assignedUser'] == null
+          ? null
+          : User.fromJson(json['assignedUser'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_TaskToJson(_$_Task instance) => <String, dynamic>{
@@ -19,6 +22,7 @@ Map<String, dynamic> _$$_TaskToJson(_$_Task instance) => <String, dynamic>{
       'name': instance.name,
       'body': instance.body,
       'status': _$StatusEnumMap[instance.status],
+      'assignedUser': instance.assignedUser,
     };
 
 const _$StatusEnumMap = {
