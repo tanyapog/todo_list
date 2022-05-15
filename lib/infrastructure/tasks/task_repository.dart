@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:injectable/injectable.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
+import 'package:todo_list/domain/tasks/status.dart';
 import 'package:todo_list/domain/tasks/task.dart';
 
 @LazySingleton()
@@ -14,6 +15,14 @@ class TaskRepository {
     yield* (_prefs.getStringListStream(tasksKey))
       .map((jsonTasks) => (jsonTasks ?? [])
       .map((taskData) => Task.fromJson(jsonDecode(taskData)))
+      .toList());
+  }
+
+  Stream<List<Task>> fetchFilteredTasks(Status status) async* {
+    yield* fetchTasks()
+      .map((tasks) => tasks
+      .map((task) => task)
+      .where((task) => task.status == status)
       .toList());
   }
 
