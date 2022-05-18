@@ -2,7 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:todo_list/application/tasks/task_watcher/filtering_strategy/task_status_filter.dart';
+import 'package:todo_list/domain/tasks/filtered_tasks_snapshot.dart';
+import 'package:todo_list/domain/tasks/task_status_filter.dart';
 import 'package:todo_list/domain/tasks/task.dart';
 
 part 'task_watcher_event.dart';

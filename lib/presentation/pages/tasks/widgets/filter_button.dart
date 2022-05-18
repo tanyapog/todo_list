@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo_list/application/tasks/task_watcher/filtering_strategy/task_status_filter.dart';
+import 'package:todo_list/domain/tasks/task_status_filter.dart';
 import 'package:todo_list/application/tasks/task_watcher/task_watcher_bloc.dart';
 
 class FilterButton extends StatelessWidget {

@@ -1,4 +1,4 @@
-import 'package:todo_list/application/tasks/task_watcher/filtering_strategy/task_status_filter.dart';
+import 'package:todo_list/domain/tasks/task_status_filter.dart';
 import 'package:todo_list/domain/tasks/task.dart';
 import 'package:todo_list/infrastructure/tasks/task_repository.dart';
 import 'package:todo_list/injection.dart';

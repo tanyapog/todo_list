@@ -1,5 +1,5 @@
 import 'package:todo_list/application/tasks/task_watcher/filtering_strategy/i_filtering_strategy.dart';
-import 'package:todo_list/application/tasks/task_watcher/filtering_strategy/task_status_filter.dart';
+import 'package:todo_list/domain/tasks/task_status_filter.dart';
 import 'package:todo_list/domain/tasks/status.dart';
 import 'package:todo_list/domain/tasks/task.dart';
 
