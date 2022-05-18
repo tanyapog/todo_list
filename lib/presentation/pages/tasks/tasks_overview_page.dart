@@ -17,7 +17,7 @@ class TasksOverviewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<TaskWatcherBloc>()
-        ..add(const TaskWatcherEvent.watch(TaskStatusFilter.all)),
+        ..add(const TaskWatcherEvent.initiate()),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Todos'),
@@ -42,16 +42,24 @@ class _TasksOverview extends StatelessWidget {
       builder: (context, state) {
         return state.map(
           loading: (_) => const Center(child: CircularProgressIndicator()),
-          success: (state) => Padding(
-            padding: const EdgeInsets.all(3.0),
-            child: ListView.builder(
-              itemCount: state.tasks.length,
-              itemBuilder: (context, i) => InheritedTask(
-                task: state.tasks[i],
-                child: const TaskCard(),
-              ),
+          success: (state) => (state.tasks.isNotEmpty)
+            ? Padding(
+                padding: const EdgeInsets.all(3.0),
+                child: ListView.builder(
+                  itemCount: state.tasks.length,
+                  itemBuilder: (context, i) => InheritedTask(
+                    task: state.tasks[i],
+                    child: const TaskCard(),
+                  ),
+                ),
+              )
+            : Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text("There is no ${(state.filter != TaskStatusFilter.all)
+                ? state.filter.name
+                : ''} tasks to show",
+                style: const TextStyle(color: Colors.black54, fontSize: 16),),
             ),
-          ),
           failure: (state) => Center(child: Text(state.message)),
         );
       },

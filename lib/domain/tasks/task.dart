@@ -23,7 +23,5 @@ class Task with _$Task{
   );
 
   factory Task.fromJson(Map<String, dynamic> json) =>
-    // fromJson сгенерированный с помощью json_serializable хорош тем, что
-    // красиво упаковывает enum'ы
     _$TaskFromJson(json);
 }

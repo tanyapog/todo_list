@@ -16,42 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TaskWatcherEvent {
-  TaskStatusFilter get filter => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initiate,
     required TResult Function(TaskStatusFilter filter) watch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initiate,
     TResult Function(TaskStatusFilter filter)? watch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initiate,
     TResult Function(TaskStatusFilter filter)? watch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(Initiate value) initiate,
     required TResult Function(Watch value) watch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initiate value)? initiate,
     TResult Function(Watch value)? watch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initiate value)? initiate,
     TResult Function(Watch value)? watch,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $TaskWatcherEventCopyWith<TaskWatcherEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,7 +61,6 @@ abstract class $TaskWatcherEventCopyWith<$Res> {
   factory $TaskWatcherEventCopyWith(
           TaskWatcherEvent value, $Res Function(TaskWatcherEvent) then) =
       _$TaskWatcherEventCopyWithImpl<$Res>;
-  $Res call({TaskStatusFilter filter});
 }
 
 /// @nodoc
@@ -71,26 +71,116 @@ class _$TaskWatcherEventCopyWithImpl<$Res>
   final TaskWatcherEvent _value;
   // ignore: unused_field
   final $Res Function(TaskWatcherEvent) _then;
-
-  @override
-  $Res call({
-    Object? filter = freezed,
-  }) {
-    return _then(_value.copyWith(
-      filter: filter == freezed
-          ? _value.filter
-          : filter // ignore: cast_nullable_to_non_nullable
-              as TaskStatusFilter,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class _$$WatchCopyWith<$Res>
-    implements $TaskWatcherEventCopyWith<$Res> {
+abstract class _$$InitiateCopyWith<$Res> {
+  factory _$$InitiateCopyWith(
+          _$Initiate value, $Res Function(_$Initiate) then) =
+      __$$InitiateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$InitiateCopyWithImpl<$Res>
+    extends _$TaskWatcherEventCopyWithImpl<$Res>
+    implements _$$InitiateCopyWith<$Res> {
+  __$$InitiateCopyWithImpl(_$Initiate _value, $Res Function(_$Initiate) _then)
+      : super(_value, (v) => _then(v as _$Initiate));
+
+  @override
+  _$Initiate get _value => super._value as _$Initiate;
+}
+
+/// @nodoc
+
+class _$Initiate implements Initiate {
+  const _$Initiate();
+
+  @override
+  String toString() {
+    return 'TaskWatcherEvent.initiate()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$Initiate);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initiate,
+    required TResult Function(TaskStatusFilter filter) watch,
+  }) {
+    return initiate();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initiate,
+    TResult Function(TaskStatusFilter filter)? watch,
+  }) {
+    return initiate?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initiate,
+    TResult Function(TaskStatusFilter filter)? watch,
+    required TResult orElse(),
+  }) {
+    if (initiate != null) {
+      return initiate();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initiate value) initiate,
+    required TResult Function(Watch value) watch,
+  }) {
+    return initiate(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initiate value)? initiate,
+    TResult Function(Watch value)? watch,
+  }) {
+    return initiate?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initiate value)? initiate,
+    TResult Function(Watch value)? watch,
+    required TResult orElse(),
+  }) {
+    if (initiate != null) {
+      return initiate(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Initiate implements TaskWatcherEvent {
+  const factory Initiate() = _$Initiate;
+}
+
+/// @nodoc
+abstract class _$$WatchCopyWith<$Res> {
   factory _$$WatchCopyWith(_$Watch value, $Res Function(_$Watch) then) =
       __$$WatchCopyWithImpl<$Res>;
-  @override
   $Res call({TaskStatusFilter filter});
 }
 
@@ -149,6 +239,7 @@ class _$Watch implements Watch {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initiate,
     required TResult Function(TaskStatusFilter filter) watch,
   }) {
     return watch(filter);
@@ -157,6 +248,7 @@ class _$Watch implements Watch {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initiate,
     TResult Function(TaskStatusFilter filter)? watch,
   }) {
     return watch?.call(filter);
@@ -165,6 +257,7 @@ class _$Watch implements Watch {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initiate,
     TResult Function(TaskStatusFilter filter)? watch,
     required TResult orElse(),
   }) {
@@ -177,6 +270,7 @@ class _$Watch implements Watch {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(Initiate value) initiate,
     required TResult Function(Watch value) watch,
   }) {
     return watch(this);
@@ -185,6 +279,7 @@ class _$Watch implements Watch {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initiate value)? initiate,
     TResult Function(Watch value)? watch,
   }) {
     return watch?.call(this);
@@ -193,6 +288,7 @@ class _$Watch implements Watch {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initiate value)? initiate,
     TResult Function(Watch value)? watch,
     required TResult orElse(),
   }) {
@@ -206,9 +302,7 @@ class _$Watch implements Watch {
 abstract class Watch implements TaskWatcherEvent {
   const factory Watch(final TaskStatusFilter filter) = _$Watch;
 
-  @override
   TaskStatusFilter get filter => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
   _$$WatchCopyWith<_$Watch> get copyWith => throw _privateConstructorUsedError;
 }

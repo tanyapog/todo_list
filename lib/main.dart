@@ -1,16 +1,23 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:todo_list/application/app_bloc_observer.dart';
 import 'package:todo_list/application/auth/auth_bloc.dart';
 import 'package:todo_list/injection.dart';
 import 'package:todo_list/presentation/routes/router.gr.dart' as app_router;
+import 'package:path_provider/path_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureInjection();
-  BlocOverrides.runZoned(
+  Directory appDocDir = await getTemporaryDirectory();
+  final storage = await HydratedStorage.build(storageDirectory: appDocDir);
+  HydratedBlocOverrides.runZoned(
     () => runApp(TodoApp()),
     blocObserver: AppBlocObserver(),
+    storage: storage,
   );
 }
 
@@ -24,7 +31,7 @@ class TodoApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-      getIt<AuthBloc>()..add(const AuthEvent.authCheckRequested()),
+        getIt<AuthBloc>()..add(const AuthEvent.authCheckRequested()),
       child: MaterialApp.router(
         title: 'Todo App',
         routerDelegate: _appRouter.delegate(),

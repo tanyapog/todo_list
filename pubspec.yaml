@@ -19,9 +19,11 @@ dependencies:
   freezed_annotation: ^2.0.3
   get_it: ^7.2.0
   http: ^0.13.4
+  hydrated_bloc: ^8.1.0
   injectable: ^1.5.3
   json_annotation: ^4.5.0
   nanoid: ^1.0.0
+  path_provider: ^2.0.10
   rx_shared_preferences: ^2.3.0
   rxdart: ^0.27.3
 
