@@ -1,13 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_list/application/tasks/task_searcher/task_searcher_bloc.dart';
 import 'package:todo_list/domain/tasks/task_status_filter.dart';
 import 'package:todo_list/application/tasks/task_watcher/task_watcher_bloc.dart';
 import 'package:todo_list/injection.dart';
-import 'package:todo_list/presentation/pages/tasks/widgets/InheritedTask.dart';
+import 'package:todo_list/presentation/pages/tasks/widgets/empty_result.dart';
 import 'package:todo_list/presentation/pages/tasks/widgets/filter_button.dart';
+import 'package:todo_list/presentation/pages/tasks/widgets/search_button.dart';
 import 'package:todo_list/presentation/pages/tasks/widgets/sign_out_button.dart';
-import 'package:todo_list/presentation/pages/tasks/widgets/task_card.dart';
+import 'package:todo_list/presentation/pages/tasks/widgets/tasks_list_view.dart';
 import 'package:todo_list/presentation/routes/router.gr.dart';
 
 class TasksOverviewPage extends StatelessWidget {
@@ -15,13 +17,16 @@ class TasksOverviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<TaskWatcherBloc>()
-        ..add(const TaskWatcherEvent.initiate()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => getIt<TaskWatcherBloc>()
+          ..add(const TaskWatcherEvent.initiate()),),
+        BlocProvider(create: (context) => getIt<TaskSearcherBloc>(),),
+      ],
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Todos'),
-          actions: const [FilterButton(), SignOutButton(),],
+          actions: const [SearchButton(), FilterButton(), SignOutButton(),],
         ),
         body: const _TasksOverview(),
         floatingActionButton: FloatingActionButton(
@@ -42,24 +47,14 @@ class _TasksOverview extends StatelessWidget {
       builder: (context, state) {
         return state.map(
           loading: (_) => const Center(child: CircularProgressIndicator()),
-          success: (state) => (state.tasks.isNotEmpty)
-            ? Padding(
-                padding: const EdgeInsets.all(3.0),
-                child: ListView.builder(
-                  itemCount: state.tasks.length,
-                  itemBuilder: (context, i) => InheritedTask(
-                    task: state.tasks[i],
-                    child: const TaskCard(),
-                  ),
-                ),
-              )
-            : Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text("There is no ${(state.filter != TaskStatusFilter.all)
+          success: (state) =>
+            (state.tasks.isNotEmpty)
+              ? TasksListView(tasks: state.tasks,)
+              : EmptyResult(
+              message: "There is no ${(state.filter != TaskStatusFilter.all)
                 ? state.filter.name
-                : ''} tasks to show",
-                style: const TextStyle(color: Colors.black54, fontSize: 16),),
-            ),
+                : ''} tasks to show"
+          ),
           failure: (state) => Center(child: Text(state.message)),
         );
       },

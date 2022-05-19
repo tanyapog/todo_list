@@ -26,6 +26,15 @@ class TaskRepository {
       .toList());
   }
 
+  Stream<List<Task>> fetchSearchedTasks(String search) async* {
+    yield* fetchTasks()
+        .map((tasks) => tasks
+        .map((task) => task)
+        .where((task) =>
+          (task.name.contains(search) || task.body.contains(search)))
+        .toList());
+  }
+
   Future<void> create(Task task) async {
     final currentTasksJson = await _prefs.getStringList(tasksKey);
     await _prefs.setStringList(tasksKey, [...?currentTasksJson, jsonEncode(task.toJson())]);
