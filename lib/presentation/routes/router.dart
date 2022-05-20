@@ -7,10 +7,14 @@ import 'package:todo_list/presentation/pages/tasks/tasks_overview_page.dart';
 @MaterialAutoRouter(
     replaceInRouteName: 'Page,Route',
     routes: <AutoRoute> [
-      MaterialRoute(page: SplashPage, initial: true),
-      MaterialRoute(page: SignInPage),
-      MaterialRoute(page: TasksOverviewPage),
-      MaterialRoute(page: TaskFormPage),
+      // MaterialRoute(page: SplashPage, initial: true),
+      // MaterialRoute(page: SignInPage),
+      // MaterialRoute(page: TasksOverviewPage),
+      // MaterialRoute(page: TaskFormPage),
+      MaterialRoute(path: '/', page: SplashPage, initial: true),
+      MaterialRoute(path: '/signIn', page: SignInPage),
+      MaterialRoute(path: '/tasks', page: TasksOverviewPage),
+      MaterialRoute(path: '/task/:id', page: TaskFormPage),
     ]
 )
 class $Router {}

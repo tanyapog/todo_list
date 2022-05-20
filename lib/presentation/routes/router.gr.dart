@@ -49,9 +49,9 @@ class Router extends _i5.RootStackRouter {
   @override
   List<_i5.RouteConfig> get routes => [
         _i5.RouteConfig(SplashRoute.name, path: '/'),
-        _i5.RouteConfig(SignInRoute.name, path: '/sign-in-page'),
-        _i5.RouteConfig(TasksOverviewRoute.name, path: '/tasks-overview-page'),
-        _i5.RouteConfig(TaskFormRoute.name, path: '/task-form-page')
+        _i5.RouteConfig(SignInRoute.name, path: '/signIn'),
+        _i5.RouteConfig(TasksOverviewRoute.name, path: '/tasks'),
+        _i5.RouteConfig(TaskFormRoute.name, path: '/task/:id')
       ];
 }
 
@@ -66,7 +66,7 @@ class SplashRoute extends _i5.PageRouteInfo<void> {
 /// generated route for
 /// [_i2.SignInPage]
 class SignInRoute extends _i5.PageRouteInfo<void> {
-  const SignInRoute() : super(SignInRoute.name, path: '/sign-in-page');
+  const SignInRoute() : super(SignInRoute.name, path: '/signIn');
 
   static const String name = 'SignInRoute';
 }
@@ -74,8 +74,7 @@ class SignInRoute extends _i5.PageRouteInfo<void> {
 /// generated route for
 /// [_i3.TasksOverviewPage]
 class TasksOverviewRoute extends _i5.PageRouteInfo<void> {
-  const TasksOverviewRoute()
-      : super(TasksOverviewRoute.name, path: '/tasks-overview-page');
+  const TasksOverviewRoute() : super(TasksOverviewRoute.name, path: '/tasks');
 
   static const String name = 'TasksOverviewRoute';
 }
@@ -85,8 +84,7 @@ class TasksOverviewRoute extends _i5.PageRouteInfo<void> {
 class TaskFormRoute extends _i5.PageRouteInfo<TaskFormRouteArgs> {
   TaskFormRoute({_i6.Key? key, _i7.Task? task})
       : super(TaskFormRoute.name,
-            path: '/task-form-page',
-            args: TaskFormRouteArgs(key: key, task: task));
+            path: '/task/:id', args: TaskFormRouteArgs(key: key, task: task));
 
   static const String name = 'TaskFormRoute';
 }
