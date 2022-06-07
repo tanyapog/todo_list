@@ -20,7 +20,7 @@ class AuthenticationRepository {
   }
 
   Future<User> signInWithEmailAndPassword(String email, String password) async {
-    if (email == 'yo@mail.ru' && password == "odsp") {
+    if (email == 'o' && password == "o") {
       final user = User(id: 1, name: 'Ivan', email: email);
       await _prefs.setString(userKey, jsonEncode(user.toJson()));
       return user;
